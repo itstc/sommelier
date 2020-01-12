@@ -1,9 +1,14 @@
 from django.core.management.base import BaseCommand
 from api.models import Wine
-from ._data import wines
+import csv
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        for wd in wines*5:
-            w = Wine(name=wd[0], description=wd[1], points=wd[2], price=wd[3], ratio=wd[2]/wd[3])
-            w.save()
+        with open('_winemag.csv') as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                rowPoints = int(row['points'])
+                if not row['price']: row['price'] = 999
+                rowPrice = float(row['price'])
+                p = Wine(name=row['title'], description=row['description'], price=rowPrice, points=rowPoints, ratio=rowPoints/rowPrice)
+                p.save()
