@@ -1,13 +1,9 @@
 from django.core.management.base import BaseCommand
 from api.models import Wine
+from ._data import wines
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        wines = [
-            Wine(name="red", description="a red wine", points=70, price=420.99),
-            Wine(name="white", description="a white wine", points=60, price=100.99),
-            Wine(name="pink", description="a pink wine", points=50, price=200.99),
-        ] 
-
-        for wine in wines:
-            wine.save()
+        for wd in wines*5:
+            w = Wine(name=wd[0], description=wd[1], points=wd[2], price=wd[3])
+            w.save()
