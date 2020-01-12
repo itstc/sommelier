@@ -5,3 +5,4 @@ class Wine(models.Model):
     description=models.TextField()
     points=models.IntegerField(blank=False, default=0)
     price=models.DecimalField(blank=False, default=0, max_digits=999, decimal_places=2)
+    ratio=models.DecimalField(blank=False, default=0, max_digits=999, decimal_places=2)

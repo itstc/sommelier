@@ -5,5 +5,5 @@ from ._data import wines
 class Command(BaseCommand):
     def handle(self, *args, **options):
         for wd in wines*5:
-            w = Wine(name=wd[0], description=wd[1], points=wd[2], price=wd[3])
+            w = Wine(name=wd[0], description=wd[1], points=wd[2], price=wd[3], ratio=wd[2]/wd[3])
             w.save()
