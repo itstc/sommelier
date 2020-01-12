@@ -12,3 +12,5 @@ RUN mkdir ${APP_ROOT}
 WORKDIR ${APP_ROOT}
 
 ADD /app/ ${APP_ROOT}
+
+ENTRYPOINT ["sh","entrypoint.sh"]

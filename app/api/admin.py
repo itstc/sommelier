@@ -1,3 +1,7 @@
 from django.contrib import admin
+from . import models
 
-# Register your models here.
+class WineAdmin(admin.ModelAdmin):
+    model=models.Wine
+
+admin.site.register(models.Wine, WineAdmin)
